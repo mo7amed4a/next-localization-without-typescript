@@ -1,17 +1,17 @@
 import './global.css'
 
 import { dir } from 'i18next'
-import { languages, fallbackLng } from '../i18n/settings'
+import { languages, fallbacklocate } from '../i18n/settings'
 import { useTranslation } from '../i18n'
 
 export async function generateStaticParams() {
-  return languages.map((lng) => ({ lng }))
+  return languages.map((locate) => ({ locate }))
 }
 
 export async function generateMetadata({ params }) {
-  let { lng } = await params
-  if (languages.indexOf(lng) < 0) lng = fallbackLng
-  const { t } = await useTranslation(lng)
+  let { locate } = await params
+  if (languages.indexOf(locate) < 0) locate = fallbacklocate
+  const { t } = await useTranslation(locate)
   return {
     title: t('title'),
     content: 'A playground to explore new Next.js 13/14 app directory features such as nested layouts, instant loading states, streaming, and component level data fetching.'
@@ -22,9 +22,9 @@ export default async function RootLayout({
   children,
   params
 }) {
-  const { lng } = await params
+  const { locate } = await params
   return (
-    <html lang={lng} dir={dir(lng)}>
+    <html lang={locate} dir={dir(locate)}>
       <head />
       <body>
         {children}

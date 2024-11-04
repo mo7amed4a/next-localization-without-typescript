@@ -1,16 +1,17 @@
 import Link from 'next/link'
 import { Trans } from 'react-i18next/TransWithoutContext'
-import { languages, fallbackLng } from '../i18n/settings'
+import { languages, fallbacklocate } from '../i18n/settings'
 import { useTranslation } from '../i18n'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import HeaderApp from '@/components/layouts/Header'
 import Image from 'next/image'
 
+
 export default async function Page({ params }) {
-  let { lng } = await params
-  if (languages.indexOf(lng) < 0) lng = fallbackLng
-  const { t } = await useTranslation(lng)
+  let { locate } = await params
+  if (languages.indexOf(locate) < 0) locate = fallbacklocate
+  const { t } = await useTranslation(locate)
 
   return (
     <>
@@ -27,6 +28,7 @@ export default async function Page({ params }) {
           alt="Next.js Logo"  
           width={180}
           height={37} />
+
         <div style={{ width: '100%' }}>
           <p>
             <Trans t={t} i18nKey="blog.text">
@@ -42,15 +44,15 @@ export default async function Page({ params }) {
         </div>
         <hr style={{ marginTop: 20, width: '90%' }} />
         <div>
-          <Link href={`/${lng}/second-page`}>
+          <Link href={`/${locate}/second-page`}>
             <button type="button">{t('to-second-page')}</button>
           </Link>
-          <Link href={`/${lng}/client-page`}>
+          <Link href={`/${locate}/client-page`}>
             <button type="button">{t('to-client-page')}</button>
           </Link>
         </div>
       </main>
-      <Footer lng={lng}/>
+      <Footer locate={locate}/>
     </>
   )
 }

@@ -2,13 +2,13 @@ import Link from 'next/link'
 import { Trans } from 'react-i18next/TransWithoutContext'
 import { languages } from '../../../i18n/settings'
 
-export const FooterBase = ({ t, lng, path = '' }) => {
+export const FooterBase = ({ t, locate, path = '' }) => {
   return (
     <footer>
       <Trans i18nKey="languageSwitcher" t={t}>
-        Switch from <strong>{{lng}}</strong> to:{' '}
+        Switch from <strong>{{locate}}</strong> to:{' '}
       </Trans>
-      {languages.filter((l) => lng !== l).map((l, index) => {
+      {languages.filter((l) => locate !== l).map((l, index) => {
         return (
           <span key={l}>
             {index > 0 && (' or ')}
